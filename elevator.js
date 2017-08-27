@@ -1,18 +1,28 @@
 export default class Elevator {
   constructor() {
     this.currentFloor = 0;
-    this.requests = {};
+    this.requests = [];
     this.riders = [];
     this.floorsTraveled = 0;
     this.stops = 0;
+    this.direction = 'up';
   }
 
-  requestRider(person) {
+  addRequest(person) {
+    console.log(this.riders);
     this.riders.push(person);
-    
   }
 
   goToFloor(person) {
+    this.riders.push(person)
+    while(this.riders.length) {
+      const floor = this.riders.find(e => {
+        if (direction === 'up') {
+
+        }
+      })
+
+    }
     this.move(person.currentFloor);
     this.move(person.dropOffFloor);
   }
@@ -36,5 +46,6 @@ export default class Elevator {
     this.riders = {};
     this.floorsTraveled = 0;
     this.stops = 0;
+    this.direction = 'up';
   }
 }

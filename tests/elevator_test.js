@@ -22,14 +22,14 @@ describe('Elevator', function() {
     elevator.reset();
 
     assert.equal(elevator.currentFloor, 0);
-    assert.deepEqual(elevator.requests, {});
+    assert.deepEqual(elevator.requests, []);
     assert.equal(elevator.floorsTraveled, 0);
     assert.equal(elevator.stops, 0);
   })
 
   it('should bring a rider to a floor above their current floor', () => {
     let person = new Person('Brittany', 2, 5);
-    elevator.goToFloor(person);
+    elevator.addRequest(person);
 
     assert.equal(elevator.floorsTraveled, 5);
     assert.equal(elevator.currentFloor, 5);
@@ -38,7 +38,7 @@ describe('Elevator', function() {
 
   it('should bring a rider to a floor below their current floor', () => {
     let person = new Person('Brittany', 8, 3);
-    elevator.goToFloor(person);
+    elevator.addRequest(person);
 
     assert.equal(elevator.floorsTraveled, 13);
     assert.equal(elevator.currentFloor, 3);
@@ -62,4 +62,9 @@ describe('Elevator', function() {
     assert.equal(elevator.floorsTraveled, 10)
     assert.equal(elevator.stops, 4)
   });
+
+  it('should be able to take multiple requests', () => {
+    let person = new Person('Bob', 3, 9);
+    let personTwo = new Person('Sue', 6, 2);
+  })
 });
