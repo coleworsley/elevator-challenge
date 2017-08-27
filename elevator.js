@@ -2,16 +2,22 @@ export default class Elevator {
   constructor() {
     this.currentFloor = 0;
     this.requests = {};
-    this.riders = {};
+    this.riders = [];
     this.floorsTraveled = 0;
+    this.stops = 0;
+  }
+
+  requestRider(person) {
+    this.riders.push(person);
+    
   }
 
   goToFloor(person) {
-    this.moveTo(person.currentFloor);
-    this.moveTo(person.dropOffFloor)
+    this.move(person.currentFloor);
+    this.move(person.dropOffFloor);
   }
 
-  moveTo(floor) {
+  move(floor) {
     while (this.currentFloor !== floor) {
       if (this.currentFloor < floor) {
         this.currentFloor++;
@@ -21,6 +27,7 @@ export default class Elevator {
         this.floorsTraveled++;
       }
     }
+    this.stops++;
   }
 
   reset() {
@@ -28,5 +35,6 @@ export default class Elevator {
     this.requests = {};
     this.riders = {};
     this.floorsTraveled = 0;
+    this.stops = 0;
   }
 }
