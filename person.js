@@ -3,5 +3,6 @@ export default class Person {
     this.name = name;
     this.currentFloor = currentFloor;
     this.dropOffFloor = dropOffFloor;
+    this.directionUp = currentFloor < dropOffFloor;
   }
 }
