@@ -76,5 +76,10 @@ describe('Elevator', function() {
 
     assert.equal(elevator.floorsTraveled, 16);
     assert.equal(elevator.stops, 4);
+  });
+
+  it('should be able to handle people going different directions', () => {
+    
   })
+
 });

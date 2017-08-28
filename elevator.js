@@ -38,7 +38,7 @@ export default class Elevator {
 
   findTargetFloor() {
     const riderFloors = this.riders.map(e => e.dropOffFloor);
-    const requestFloors = this.requests.map(e => e.currentFloor);
+    const requestFloors = this.requests.map(e => e.pickupFloor);
     const targetFloor = this.directionUp
       ? Math.max(...riderFloors, ...requestFloors)
       : Math.min(...riderFloors, ...requestFloors)
@@ -56,7 +56,7 @@ export default class Elevator {
         this.floorsTraveled++;
         this.manageRiders();
       }
-      // console.log(`Current Floor: ${this.currentFloor}`)
+      // console.log(`Current Floor: ${this.currentFloor}`)``
     }
     this.directionUp = !this.directionUp;
   }
@@ -71,7 +71,7 @@ export default class Elevator {
 
 
     this.requests.forEach((rider, i) => {
-      const onCurrentFloor = rider.currentFloor === this.currentFloor;
+      const onCurrentFloor = rider.pickupFloor === this.currentFloor;
       const sameDirection = this.directionUp === rider.directionUp;
       const lastRider = this.riders.length < 1 && onCurrentFloor;
 
