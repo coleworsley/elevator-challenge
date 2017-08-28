@@ -3,6 +3,7 @@ export default class Person {
     this.name = name;
     this.pickupFloor = pickupFloor;
     this.dropOffFloor = dropOffFloor;
+    this.currentFloor = pickupFloor;
     this.directionUp = pickupFloor < dropOffFloor;
   }
 }

@@ -20,9 +20,13 @@ export default class Elevator {
     this.directionUp = true;
   }
 
-  start() {
+  start(hour = new Date().getHours()) {
     while(this.requests.length || this.riders.length) {
       this.findTargetFloor();
+    }
+
+    if (hour < 12) {
+      this.traverse(0);
     }
   }
 
@@ -59,16 +63,23 @@ export default class Elevator {
       // console.log(`Current Floor: ${this.currentFloor}`)``
     }
     this.directionUp = !this.directionUp;
+    this.manageRiders();
+  }
+
+  changeDirection(floor) {
+    if (this.currentFloor === floor) {
+      this.directionUp = !this.directionUp;
+    }
   }
 
   manageRiders() {
     this.riders.forEach((rider, i) => {
+      rider.currentFloor = this.currentFloor;
       if (rider.dropOffFloor === this.currentFloor) {
         this.riders.splice(i, 1);
         this.stops++;
       }
     })
-
 
     this.requests.forEach((rider, i) => {
       const onCurrentFloor = rider.pickupFloor === this.currentFloor;
